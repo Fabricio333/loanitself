@@ -55,15 +55,18 @@
     .hero button:last-child {
       margin-right: 0;
     }
-    .section {
+    .strategy {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
       margin-bottom: 5rem;
       align-items: center;
     }
+    .strategy:nth-child(even) .text {
+      order: -1;
+    }
     @media(max-width: 700px) {
-      .section {
+      .strategy {
         grid-template-columns: 1fr;
       }
     }
@@ -81,24 +84,26 @@
       <p>Understand how borrowing against your bitcoin works.</p>
       <button onclick="window.location.href='index.html'">⬅️ Back Home</button>
     </section>
-    <section class="section">
-      <div class="image">
-        <img src="https://via.placeholder.com/600x400.png?text=Stickman+Mindmap+1" alt="Stick man mindmap showing loan collateralization." />
-      </div>
-      <div class="text">
-        <h2>How Collateral Works</h2>
-        <p>You lock up bitcoin as collateral. The lender holds it while you receive dollars. If the loan isn't repaid, the collateral can be sold to cover the debt.</p>
-      </div>
-    </section>
-    <section class="section">
-      <div class="image">
-        <img src="https://via.placeholder.com/600x400.png?text=Stickman+Mindmap+2" alt="Stick man mindmap explaining liquidation." />
-      </div>
-      <div class="text">
-        <h2>What Happens on a Price Drop</h2>
-        <p>If bitcoin's value falls too much, you may need to add collateral or repay part of the loan to avoid liquidation.</p>
-      </div>
-    </section>
+    <div id="explanations">
+      <section class="strategy">
+        <div class="image">
+          <img src="https://via.placeholder.com/600x400.png?text=Stickman+Mindmap+1" alt="Stick man mindmap showing loan collateralization." />
+        </div>
+        <div class="text">
+          <h2>How Collateral Works</h2>
+          <p>You lock up bitcoin as collateral. The lender holds it while you receive dollars. If the loan isn't repaid, the collateral can be sold to cover the debt.</p>
+        </div>
+      </section>
+      <section class="strategy">
+        <div class="image">
+          <img src="https://via.placeholder.com/600x400.png?text=Stickman+Mindmap+2" alt="Stick man mindmap explaining liquidation." />
+        </div>
+        <div class="text">
+          <h2>What Happens on a Price Drop</h2>
+          <p>If bitcoin's value falls too much, you may need to add collateral or repay part of the loan to avoid liquidation.</p>
+        </div>
+      </section>
+    </div>
   </div>
 </body>
 </html>
