@@ -7,13 +7,24 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-PKug1jK9TYRi6Pl/ZJe80wpzzZ0F6FyfQLlGn6UOzuqvENXQBy8SBVoBRhFDw1Fw" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ]
+        })">
+  </script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-1VFfwvVER8IcqkINqEGpF0CSFPy8Zre+4QwZ_3FvUpUX7V3REzItmXgDzfezQD25" crossorigin="anonymous"></script>
   <style>
     :root {
       --bg: #000;
       --fg: #e5e5e5;
       --accent: #ff8b3d;
+      --card: #111; /* ✅ Add this line */
       font-family: 'Inter', sans-serif;
       scroll-behavior: smooth;
     }
@@ -23,7 +34,18 @@
       margin: 0;
       line-height: 1.7;
     }
-    h1, h2 {
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    h2 {
       margin: 0 0 .5rem;
     }
     .container {
@@ -59,25 +81,27 @@
         grid-template-columns: 1fr;
       }
     }
-    .image {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #111;
+    .image img {
+      max-width: 100%;
+      height: auto;
       border-radius: 8px;
-      padding: 2rem;
     }
+
     .image span {
       opacity: 0.7;
       font-style: italic;
       text-align: center;
     }
     .math {
-      background: #111;
+      background: var(--card);
       padding: 1rem;
       border-radius: 6px;
       overflow-x: auto;
+      font-size: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
     }
+
   </style>
 </head>
 <body>
@@ -90,44 +114,53 @@
     <div id="strategies">
       <section class="strategy">
         <div class="image">
+          <img src="/images/strategy1.png" alt="BTC went up! Alice buys back her debt with fewer sats.">
           <span>BTC went up! Alice buys back her debt with fewer sats.</span>
         </div>
         <div class="text">
           <h2>Strategy 1: Spend USD Today, Repay Fewer Sats Tomorrow</h2>
-          <p>🪙 Alice posts 1 BTC as collateral ($50K)<br>
-             💵 Takes a $25K loan<br>
-             🚀 BTC rises to $100K<br>
+          <p>🪙 Alice posts 1 BTC as collateral ($100K)<br>
+             💵 Takes a $50K loan<br>
+             🚀 BTC rises to $200K<br>
              ↩️ Repays loan with 0.25 BTC instead of 0.5
           </p>
-          <div class="math">\( \text{Repay in BTC} = \frac{\$25,000}{\text{BTC Price at Repayment}} = 0.25\,\text{BTC} \)</div>
+          <div class="math">
+            \( \text{Repay in BTC} = \frac{\$50{,}000}{\$200{,}000/\text{BTC}} = 0.25\,\text{BTC} \)
+          </div>
         </div>
       </section>
       <section class="strategy">
         <div class="image">
+          <img src="/images/strategy2.png" alt="As BTC grows, Alice keeps borrowing more without selling.">
           <span>As BTC grows, Alice keeps borrowing more without selling.</span>
         </div>
         <div class="text">
           <h2>Strategy 2: Releverage on the Way Up</h2>
-          <p>🪙 Alice starts with 2 BTC ($100K)<br>
-             💸 Takes $40K loan (40% LTV)<br>
+          <p>🪙 Alice starts with 1 BTC ($100K)<br>
+             💸 Takes $50K loan (50% LTV)<br>
              📈 BTC doubles → new value $200K<br>
-             🔁 Takes second $40K loan
+             🔁 Takes second $50K loan and rise LTV to 50%
           </p>
-          <div class="math">\( \text{New LTV} = \frac{40K}{200K} = 20\% \Rightarrow \text{Room to Releverage} \)</div>
+          <div class="math">
+            \( \text{New LTV} = \frac{\$50{,}000}{\$200{,}000} = 25\% \Rightarrow \text{Room to Releverage} \)
+          </div>
         </div>
       </section>
       <section class="strategy">
         <div class="image">
+          <img src="/images/strategy3.png" alt="She spent, she stacked, and the stack paid back the debt.">
           <span>She spent, she stacked, and the stack paid back the debt.</span>
         </div>
         <div class="text">
           <h2>Strategy 3: Spend + Stack + Self-Repay</h2>
-          <p>🪙 2 BTC collateral = $100K<br>
-             💵 Borrows $50K → $30K shopping 🛍️, $20K buys 0.4 BTC<br>
-             🚀 BTC doubles → 0.4 BTC = $40K<br>
-             ↩️ Loan can be repaid with gains
+          <p>🪙 1 BTC collateral = $100K<br>
+             💵 Borrows $50K → $25K shopping 🛍️, $25K buys 0.25 BTC<br>
+             🚀 BTC doubles ($200K) → 0.25 BTC = $50K<br>
+             ↩️ Loan can be repaid with purchased BTC
           </p>
-          <div class="math">\( \text{BTC Gain} = 0.4 \times 100K = \$40,000 \)</div>
+          <div class="math">
+            \( \text{BTC Sold} = 0\)
+          </div>
         </div>
       </section>
     </div>
