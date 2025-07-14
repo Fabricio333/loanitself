@@ -59,6 +59,7 @@
     }
     .hero button {
       margin-top: 1.5rem;
+      margin-right: .5rem;
       background: var(--accent);
       color: #000;
       border: none;
@@ -66,6 +67,9 @@
       font-weight: 600;
       border-radius: 9999px;
       cursor: pointer;
+    }
+    .hero button:last-child {
+      margin-right: 0;
     }
     .strategy {
       display: grid;
@@ -110,6 +114,7 @@
       <h1>The Loan That Pays Itself</h1>
       <p>Smart Bitcoin-backed strategies for keeping your sats while spending.</p>
       <button onclick="document.getElementById('strategies').scrollIntoView({behavior: 'smooth'})">🔍 Show Me the Strategies</button>
+      <button onclick="window.location.href='collateralized_loans.html'">💡 Learn About Collateralized Loans</button>
     </section>
     <div id="strategies">
       <section class="strategy">
